@@ -1,0 +1,102 @@
+<div class="container mx-auto py-8">
+  <h2 class="text-2xl text-foreground font-semibold mb-4">Enviar Notificación</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Formulario de notificación -->
+    <div class="md:col-span-2 p-6 bg-background shadow-lg rounded-lg">
+      <!-- Opciones de envío con iconos -->
+      <div class="flex space-x-4 mb-6">
+        <div>
+          <label class="inline-flex items-center">
+            <input type="checkbox" [(ngModel)]="notificacion.p" class="form-checkbox text-primary">
+            <i class="pi pi-bell ml-2 text-primary"></i>
+            <span class="ml-2 text-foreground">Push</span>
+          </label>
+        </div>
+        <div>
+          <label class="inline-flex items-center">
+            <input type="checkbox" [(ngModel)]="notificacion.m" class="form-checkbox text-primary">
+            <i class="pi pi-whatsapp ml-2 text-green-500"></i>
+            <span class="ml-2 text-foreground">WhatsApp</span>
+          </label>
+        </div>
+        <div>
+          <label class="inline-flex items-center">
+            <input type="checkbox" [(ngModel)]="notificacion.e" class="form-checkbox text-primary">
+            <i class="pi pi-envelope ml-2 text-blue-500"></i>
+            <span class="ml-2 text-foreground">Correo</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Opción de envío por sede -->
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-2 text-foreground">Enviar por sede</label>
+        <select [(ngModel)]="notificacion.id_sede" (change)="handleSedeChange()" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary">
+          <option value="">Seleccione una sede</option>
+          <option *ngFor="let sede of sedes" [value]="sede.id">{{ sede.nombre }}</option>
+        </select>
+      </div>
+
+      <!-- Opción de envío por usuarios -->
+      <div class="mb-6" *ngIf="!notificacion.id_sede">
+        <label class="block text-sm font-medium mb-2 text-foreground">Enviar por usuario</label>
+        <input type="text" [(ngModel)]="notificacion.id_usuario" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary" placeholder="Ej: usuario1, usuario2">
+      </div>
+
+      <!-- Campos de la notificación -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2 text-foreground">Título</label>
+        <input type="text" [(ngModel)]="notificacion.title" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary" placeholder="Título de la notificación">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2 text-foreground">Cuerpo</label>
+        <textarea [(ngModel)]="notificacion.body" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary" placeholder="Contenido de la notificación"></textarea>
+      </div>
+
+      <!-- Botón para mostrar/ocultar campos opcionales -->
+      <div class="mb-4">
+        <button (click)="showOptionalFields = !showOptionalFields"
+                class="bg-primary text-foreground py-2 px-4 rounded  transition">
+          {{ showOptionalFields ? 'Ver menos' : 'Mostrar mas Opciones' }}
+        </button>
+      </div>
+
+      <ng-container *ngIf="showOptionalFields">
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2 text-foreground">Ícono (opcional)</label>
+          <input type="text" [(ngModel)]="notificacion.icon"
+                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary"
+                 placeholder="URL del ícono">
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2 text-foreground">URL de Click (opcional)</label>
+          <input type="text" [(ngModel)]="notificacion.click"
+                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary"
+                 placeholder="URL a redireccionar">
+        </div>
+      </ng-container>
+      <!-- Botón de envío -->
+      <div class="flex justify-end">
+        <button (click)="sendNotification()" class="bg-primary text-foreground py-2 px-4 rounded hover:bg-blue-600 transition">Enviar Notificación</button>
+      </div>
+    </div>
+
+    <!-- Sección de envíos pendientes -->
+    <!-- <div class="bg-background shadow-lg rounded-lg p-6">
+      <h3 class="text-xl text-foreground font-semibold mb-4">Envíos Pendientes</h3>
+      <div *ngFor="let envio of enviosPendientes" class="mb-4">
+        <div class="text-sm text-foreground mb-2">
+          <strong>{{ envio.title }}</strong> - {{ envio.status }}
+        </div>
+        <progress-bar [value]="envio.progress" class="w-full"></progress-bar>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Toast y ConfirmDialog -->
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</div>

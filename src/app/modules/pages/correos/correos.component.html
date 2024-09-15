@@ -1,0 +1,128 @@
+<!--
+
+<div class="container mx-auto py-8">
+  <h2 class="text-2xl text-foreground font-semibold mb-4 ]">Envío de Correos</h2>
+
+  <div class="flex justify-between mb-6">
+    <button (click)="addEmail()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">
+      Agregar Correo
+    </button>
+    <button (click)="sendEmails()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition">
+      Enviar Correos
+    </button>
+  </div>
+
+  <div class="flex space-x-4 overflow-x-auto overflow-hidden">
+    <div *ngFor="let email of emails; let i = index" class=" shadow-md rounded-lg p-4 w-96 relative">
+      <button
+        (click)="removeEmail(i)"
+        class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition"
+      >
+        ✕
+      </button>
+
+      <h3 class="text-xl font-semibold mb-4 text-foreground">Correo {{ i + 1 }}</h3>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1 text-foreground">Destinatarios:</label>
+        <input
+          type="text"
+          [(ngModel)]="email.correos"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Ej: correo1@example.com, correo2@example.com"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1  text-foreground">Título:</label>
+        <input
+          type="text"
+          [(ngModel)]="email.titulo"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Título del correo"
+        >
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1 text-foreground">Cuerpo:</label>
+        <textarea
+          [(ngModel)]="email.cuerpo"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Contenido del correo"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+ <div class="container mx-auto py-8">
+  <h2 class="text-2xl text-foreground font-semibold mb-4">Envío de Correos</h2>
+
+  <div class="flex justify-between mb-6">
+    <button
+      (click)="addEmail()"
+      class="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] py-2 px-4 rounded hover:bg-[hsl(var(--primary))]/90 transition"
+    >
+      Agregar Correo
+    </button>
+    <button
+      (click)="sendEmails()"
+      class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"
+    >
+      Enviar Correos
+    </button>
+  </div>
+
+  <div class="flex space-x-4 overflow-x-auto overflow-hidden ">
+    <div
+      *ngFor="let email of emails; let i = index"
+      class="shadow-md rounded-lg p-4 w-96 relative bg-[hsl(var(--background))] text-[hsl(var(--card-foreground))]"
+    >
+      <button
+        (click)="removeEmail(i)"
+        class="absolute top-2 right-2 bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))] rounded-full p-1 hover:bg-[hsl(var(--destructive))]/90 transition"
+      >
+        ✕
+      </button>
+
+      <h3 class="text-xl font-semibold mb-4 text-[hsl(var(--card-foreground))]">
+        Correo {{ i + 1 }}
+      </h3>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1 text-[hsl(var(--foreground))]">
+          Destinatarios:
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="email.correos"
+          class="w-full border border-[hsl(var(--border))] rounded px-3 py-2 focus:outline-none focus:ring focus:border-[hsl(var(--primary))]"
+          placeholder="Ej: correo1@example.com, correo2@example.com"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1 text-[hsl(var(--foreground))]">
+          Título:
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="email.titulo"
+          class="w-full border border-[hsl(var(--border))] rounded px-3 py-2 focus:outline-none focus:ring focus:border-[hsl(var(--primary))]"
+          placeholder="Título del correo"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1 text-[hsl(var(--foreground))]">
+          Cuerpo:
+        </label>
+        <textarea
+          [(ngModel)]="email.cuerpo"
+          class="w-full border border-[hsl(var(--border))] rounded px-3 py-2 focus:outline-none focus:ring focus:border-[hsl(var(--primary))]"
+          placeholder="Contenido del correo"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>

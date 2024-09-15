@@ -1,0 +1,183 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'ngx-toastr/toastr';
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+@layer base {
+  :root {
+    --primary: 221.2 83.2% 53.3%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 210 40% 96%;
+    --card-foreground: 240 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 213 27% 84%;
+    --muted-foreground: 215 16% 47%;
+    --destructive: 350 100% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 32% 91%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 7%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --destructive: 350 100% 40%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+  }
+
+  :root[data-theme='violeta'] {
+    --primary: 262.1 83.3% 57.8%;
+  }
+
+  .dark[data-theme='violeta'] {
+    --background: 20 14.3% 1.1%;
+    --card: 24 10% 4%;
+    --foreground: 210 20% 98%;
+    --card-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --destructive: 350 100% 40%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+  }
+
+  :root[data-theme='rojo'] {
+    --primary: 350 100% 40%;
+  }
+
+  .dark[data-theme='rojo'] {
+    --primary: 350 100% 40%;
+    --primary-foreground: 0 85.7% 97.3%;
+    --background: 20 14.3% 1.1%;
+    --card: 24 10% 4%;
+  }
+
+  :root[data-theme='azul'] {
+    --primary: 221.2 83.2% 53.3%;
+  }
+
+  .dark[data-theme='azul'] {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 7%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --destructive: 350 100% 40%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+  }
+
+  :root[data-theme='naranja'] {
+    --primary: 24.6 95% 53.1%;
+  }
+
+  .dark[data-theme='naranja'] {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 24 10% 7%;
+    --card-foreground: 60 9.1% 97.8%;
+    --primary: 20.5 90.2% 48.2%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --border: 12 6.5% 15.1%;
+  }
+
+  :root[data-theme='amarillo'] {
+    --primary: 47.9 95.8% 53.1%;
+  }
+
+  .dark[data-theme='amarillo'] {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 24 10% 7%;
+    --card-foreground: 60 9.1% 97.8%;
+    --primary: 47.9 95.8% 53.1%;
+    --primary-foreground: 26 83.3% 14.1%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    
+  }
+
+  :root[data-theme='verde'] {
+    --primary: 142.1 76.2% 36.3%;
+  }
+
+  .dark[data-theme='verde'] {
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --background: 20 14.3% 1.1%;
+    --card: 24 10% 4%;
+  }
+
+  :root[data-theme='turquesa'] {
+    --primary: 174 72% 56%;
+  }
+
+  .dark[data-theme='turquesa'] {
+    --primary: 174 72% 56%;
+    --primary-foreground: 210 20% 98%;
+    --background: 20 14.3% 1.1%;
+    --card: 24 10% 4%;
+  }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full px-3 py-3 text-xs border rounded-md border-border bg-background text-foreground placeholder-muted-foreground focus:z-10 focus:border-primary focus:outline-none focus:ring-primary;
+  }
+
+  [type='checkbox'],
+  [type='radio'] {
+    @apply w-4 h-4 rounded border-border bg-background text-primary accent-primary;
+  }
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer components {
+  .dropdown-content {
+    @apply duration-100 ease-in scale-95 opacity-0 pointer-events-none;
+  }
+
+  .dropdown:hover>.dropdown-content {
+    @apply block duration-200 scale-100 opacity-100 pointer-events-auto animate-fade-in-up;
+  }
+}
+
+/** Scroll bar **/
+@supports selector(::-webkit-scrollbar) {
+  .supports-scrollbars\: pr-2 {
+    padding-right: 0.5rem;
+  }
+}
