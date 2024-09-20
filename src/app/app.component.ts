@@ -26,7 +26,7 @@ import { InscripcionService } from './modules/services/inscripcion.service';
 export class AppComponent implements OnInit {
 
   openTab = 1;
-  title = 'frontend_sceii';
+  title = 'front-ovucb';
   isModalVisible: boolean = false;
   textoArea = ''
 

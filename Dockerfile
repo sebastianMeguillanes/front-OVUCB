@@ -9,6 +9,6 @@ RUN npm run build --configuration=production
 # Stage 2: Serve
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/frontend_sceii/browser /usr/share/nginx/html
+COPY --from=build /app/dist/front-ovucb/browser /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;" ]

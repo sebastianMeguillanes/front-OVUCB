@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend_sceii": {
+    "front-ovucb": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -33,7 +33,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/frontend_sceii",
+            "outputPath": "dist/front-ovucb",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -83,10 +83,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "frontend_sceii:build:production"
+              "buildTarget": "front-ovucb:build:production"
             },
             "development": {
-              "buildTarget": "frontend_sceii:build:development"
+              "buildTarget": "front-ovucb:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,7 +94,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "frontend_sceii:build"
+            "buildTarget": "front-ovucb:build"
           }
         },
         "test": {
