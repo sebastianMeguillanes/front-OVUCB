@@ -1,0 +1,20 @@
+<div class="w-full h-8 bg-gray-200 rounded-full overflow-hidden relative">
+    <!-- Barra de Progreso -->
+    <div class="h-full bg-primary rounded-full" [style.width.%]="value"></div>
+  
+    <!-- Texto dentro de la barra -->
+    <div class="absolute inset-0 flex items-center justify-center text-white font-semibold">
+      {{ formattedPercentage }}% Completado
+    </div>
+  </div>
+  
+  <!-- Detalles del progreso -->
+  <div class="flex justify-between mt-2 text-sm">
+    <div>
+      Pregunta {{ current }} de {{ total }}
+    </div>
+    <div>
+      Faltan {{ remaining }} pregunta(s)
+    </div>
+  </div>
+  

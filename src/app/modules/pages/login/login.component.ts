@@ -32,7 +32,7 @@ import { ToastrService } from 'ngx-toastr';
 
     this.inscriptionService.login(this.loginData).subscribe({
       next: (response) => {
-        sessionStorage.setItem('rol', "sociedad");
+        sessionStorage.setItem('rol', "psicologo");
         this.inscriptionService.saveUserToken(response.token);
         this.router.navigate(['/admin']);
         this.toastr.success('Inicio Exitoso!');
@@ -54,7 +54,7 @@ import { ToastrService } from 'ngx-toastr';
     clearTimeout(this.timeoutHandle);
     this.timeoutHandle = setTimeout(() => {
       this.attemptCount = 0;
-    }, 300000); // 5 minutos
+    }, 200000); // 5 minutos
   }
 
   resetAttemptCount() {

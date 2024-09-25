@@ -1,0 +1,64 @@
+<div class="w-full h-screen flex flex-col bg-card overflow-auto">
+
+    <!-- Barra de progreso -->
+    <app-barra-progreso [value]="(currentStep / 3) * 100" [total]="3" [current]="currentStep"></app-barra-progreso>
+    <!-- Contenedor principal del formulario -->
+    <div class="grow p-4 mt-1 overflow-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-track-transparent scrollbar-thumb-muted">
+      
+      <!-- Parte 1: Datos Personales -->
+      <div *ngIf="currentStep === 1" class="fade-in-up">
+        <h2 class="text-lg font-semibold">Datos Personales</h2>
+        <form (ngSubmit)="goToNextStep()">
+          <div class="mb-4">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" [(ngModel)]="estudiante.name" name="nombre" required class="w-full p-2 border" />
+          </div>
+          <div class="mb-4">
+            <label for="apellido">Apellido:</label>
+            <input id="apellido" [(ngModel)]="estudiante.lastname" name="apellido" required class="w-full p-2 border" />
+          </div>
+          <button type="submit" class="btn w-full bg-primary text-white">Siguiente</button>
+        </form>
+      </div>
+  
+      <!-- Parte 2: Información de Contacto -->
+      <div *ngIf="currentStep === 2" class="fade-in-up">
+        <h2 class="text-lg font-semibold">Información de Contacto</h2>
+        <form (ngSubmit)="goToNextStep()">
+          <div class="mb-4">
+            <label for="telefono">Teléfono:</label>
+            <input id="telefono" [(ngModel)]="estudiante.phone" name="telefono" required class="w-full p-2 border" />
+          </div>
+          <div class="mb-4">
+            <label for="correo">Correo Electrónico:</label>
+            <input id="correo" [(ngModel)]="estudiante.email" name="correo" required class="w-full p-2 border" />
+          </div>
+          <div class="flex justify-between">
+            <button type="button" class="btn w-full bg-muted text-white" (click)="goToPreviousStep()">Anterior</button>
+            <button type="submit" class="btn w-full bg-primary text-white ml-2">Siguiente</button>
+          </div>
+        </form>
+      </div>
+  
+      <div *ngIf="currentStep === 3" class="fade-in-up">
+        <h2 class="text-lg font-semibold">Carreras de Interés</h2>
+        <form (ngSubmit)="submitForm()">
+          <div class="mb-4">
+            <label for="carreras">Selecciona hasta 3 carreras de interés:</label>
+            <select multiple [(ngModel)]="estudiante.careersInterest" name="carreras" class="w-full p-2 border">
+              <option *ngFor="let career of availableCareers" [value]="career.id">
+                {{ career.name }}
+              </option>
+            </select>
+          </div>
+          <div class="flex justify-between">
+            <button type="button" class="btn w-full bg-muted text-white" (click)="goToPreviousStep()">Anterior</button>
+            <button type="submit" class="btn w-full bg-primary text-white ml-2">Enviar</button>
+          </div>
+        </form>
+      </div>
+      
+  
+    </div>
+  </div>
+  

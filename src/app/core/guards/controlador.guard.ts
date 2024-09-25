@@ -9,50 +9,36 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-
 export class ControladorGuard implements CanActivate {
-
-  admin = ''
-  user = ''
 
   constructor(
     private router: Router
   ) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-
     const requiredRoles = next.data['requiredRoles'] as string[];
-    const token = sessionStorage.getItem('token')
+    const token = sessionStorage.getItem('token');
+    const userRole = sessionStorage.getItem('rol');
 
-    if (sessionStorage.getItem('rol') === 'sociedad') {
-      this.admin = 'sociedad'
-    } else {
-      this.user = 'user'
-    }
-
-
+    // Si no existe el token, redirige al login
     if (!token) {
-      if (requiredRoles && requiredRoles.includes('sociedad')) {
-        this.router.navigate(['/login']);
-      } else {
-        this.router.navigate(['/profile/404']);
-      }
+      this.router.navigate(['/login']);
       return false;
-    } else {
-      if (this.admin === 'sociedad' && requiredRoles.includes('sociedad')) {
-        return true
-      } else {
-        if (this.user === 'user' && requiredRoles.includes('user')) {
-          return true
-        } else {
-          this.router.navigate(['/login']);
-        }
-      }
     }
-    return false
+
+    // Verifica si el usuario tiene un rol asignado
+    if (!userRole) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+
+    // Verifica si el rol del usuario coincide con los roles requeridos
+    if (requiredRoles && requiredRoles.includes(userRole)) {
+      return true;
+    }
+
+    // Si el rol del usuario no tiene permisos para acceder, redirige a una página 404
+    this.router.navigate(['/profile/404']);
+    return false;
   }
-
 }
-
-
-
